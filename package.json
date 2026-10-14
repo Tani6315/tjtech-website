@@ -1,0 +1,7 @@
+{
+  "name": "tj-tech-website",
+  "version": "1.0.0",
+  "description": "TJ Tech portfolio website + admin dashboard (static HTML/CSS/JS, optional Node server)",
+  "scripts": { "start": "node server.js" },
+  "author": "Tanveer Jahangir"
+}

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TJ Tech Admin</title>
+<script>
+  // Make sure relative paths work when opened as /admin (no trailing slash)
+  if (location.protocol.startsWith("http") && !/\/$|\.html$/.test(location.pathname)) location.replace(location.pathname + "/" + location.search + location.hash);
+</script>
+<link rel="icon" href="../assets/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section class="login" id="login" hidden>
+  <form class="login__card" id="loginForm" autocomplete="on">
+    <img src="../assets/img/logo-mark-light.png" alt="TJ Tech" class="login__logo">
+    <h1>Admin Dashboard</h1>
+    <p>Sign in to manage your portfolio projects.</p>
+    <label class="fld"><span>Password</span>
+      <div class="pw"><input type="password" id="loginPw" autocomplete="current-password" required autofocus><button type="button" class="pw__toggle" aria-label="Show password" data-toggle-pw="loginPw">Show</button></div>
+    </label>
+    <button class="btn btn--primary btn--block" type="submit">Sign in</button>
+    <p class="login__err" id="loginErr" role="alert"></p>
+    <a href="../index.html" class="login__back">← Back to website</a>
+  </form>
+</section>
+
+<!-- ============ APP ============ -->
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <a class="side__brand" href="#projects"><img src="../assets/img/logo-mark-light.png" alt=""><span><b>TJ TECH</b><small>Admin</small></span></a>
+    <nav class="side__nav">
+      <a href="#projects" data-nav="projects"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Projects</a>
+      <a href="#new" data-nav="new"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Add Project</a>
+      <a href="#settings" data-nav="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</a>
+      <a href="../portfolio.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>View Website</a>
+    </nav>
+    <div class="side__foot">
+      <div class="conn" id="conn"><i></i><span>Checking…</span></div>
+      <button class="btn btn--ghost btn--sm btn--block" id="logout">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <button class="top__menu" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div><h1 id="pageTitle">Projects</h1><p id="pageSub" class="muted"></p></div>
+      <div class="top__actions" id="topActions"></div>
+    </header>
+
+    <div class="banner" id="banner" hidden></div>
+
+    <!-- Projects list -->
+    <section class="view" id="view-projects">
+      <div class="stats" id="stats"></div>
+      <div class="list-head"><h2>All projects</h2><p class="muted">Use the arrows to change the order shown on the website. ★ = featured on the home page.</p></div>
+      <div class="plist" id="plist"></div>
+      <div class="dirty" id="dirtyBar" hidden><span>You have unpublished changes to the order or featured projects.</span><div><button class="btn btn--ghost btn--sm" id="discardBtn">Discard</button><button class="btn btn--primary btn--sm" id="publishOrderBtn">Publish changes</button></div></div>
+    </section>
+
+    <!-- Editor -->
+    <section class="view" id="view-editor" hidden>
+      <form id="editor" novalidate>
+        <div class="panel">
+          <div class="panel__head"><span class="num">1</span><div><h2>Basic details</h2><p>How the project appears on cards and its own page.</p></div></div>
+          <div class="grid2">
+            <label class="fld"><span>Project title *</span><input name="title" required maxlength="80" placeholder="e.g. Jahangir Motors"></label>
+            <label class="fld"><span>Subtitle / project kind *</span><input name="kind" required maxlength="120" placeholder="e.g. Restaurant Website, Inventory Software"></label>
+          </div>
+          <div class="grid3">
+            <label class="fld"><span>Type</span><select name="type"><option value="website">Website</option><option value="software">Custom Software</option><option value="app">Mobile App</option></select></label>
+            <label class="fld"><span>Project</span><select name="source"><option value="real">Real World Project</option><option value="demo">Demo Project</option></select></label>
+            <label class="fld"><span>Status badge</span><select name="status"><option value="live">Live</option><option value="private">Confidential / Private</option><option value="development">In Development</option><option value="demo">Demo</option></select></label>
+          </div>
+          <div class="toggles">
+            <label class="tog"><input type="checkbox" name="featured"><span></span>Feature on home page</label>
+            <label class="tog"><input type="checkbox" name="confidential"><span></span>Contains sensitive data — show “demo data only” notice</label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><span class="num">2</span><div><h2>Links <em>(optional)</em></h2><p>Leave empty for private software — visitors will see a “Request a demo” button instead.</p></div></div>
+          <div class="grid2">
+            <label class="fld"><span>Live website URL</span><input name="url" type="url" placeholder="https://example.com"></label>
+            <label class="fld"><span>GitHub repository URL</span><input name="repo" type="url" placeholder="https://github.com/Tani6315/project"></label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><span class="num">3</span><div><h2>Screenshots</h2><p>Upload as many as you like. The first picture is the cover. Images are compressed automatically.</p></div></div>
+          <label class="drop" id="drop">
+            <input type="file" id="fileInput" accept="image/*" multiple>
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <strong>Drop images here or click to upload</strong>
+            <small>PNG, JPG or WebP · multiple files allowed · you can also paste a screenshot (Ctrl + V)</small>
+          </label>
+          <div class="imgs" id="imgs"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><span class="num">4</span><div><h2>Description</h2><p>The summary shows on cards; the rest builds the case-study page.</p></div></div>
+          <label class="fld"><span>Short summary * <i class="count" data-count-for="summary"></i></span><textarea name="summary" rows="3" required maxlength="500" placeholder="One or two sentences about what you built and for whom."></textarea></label>
+          <label class="fld"><span>About the client (optional)</span><textarea name="client" rows="3" placeholder="Who is the client and what do they do?"></textarea></label>
+          <div class="grid2">
+            <label class="fld"><span>Goals (optional — one per line)</span><textarea name="goals" rows="4" placeholder="Goal one&#10;Goal two"></textarea></label>
+            <label class="fld"><span>Result (optional)</span><textarea name="result" rows="4" placeholder="What changed for the client?"></textarea></label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><span class="num">5</span><div><h2>Features & functionality</h2><p>Group features under headings. Write one feature per line.</p></div></div>
+          <div id="groups"></div>
+          <button type="button" class="btn btn--ghost btn--sm" id="addGroup">+ Add feature group</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><span class="num">6</span><div><h2>Technologies & tags</h2><p>Separate with commas.</p></div></div>
+          <label class="fld"><span>Languages & technologies</span><input name="tech" placeholder="HTML, CSS, JavaScript, Next.js"></label>
+          <div class="suggest" id="techSuggest"></div>
+          <label class="fld"><span>Tags (optional)</span><input name="tags" placeholder="Marketplace, SEO, Responsive"></label>
+        </div>
+
+        <div class="savebar">
+          <button type="button" class="btn btn--ghost" id="cancelEdit">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="saveBtn">Save &amp; Publish</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Settings -->
+    <section class="view" id="view-settings" hidden>
+      <div class="panel" id="nodePanel" hidden>
+        <div class="panel__head"><span class="num ok">✓</span><div><h2>Connected to the Node.js server</h2><p>Changes are saved straight to this server’s files. No GitHub setup needed.</p></div></div>
+      </div>
+      <div class="panel" id="ghPanel">
+        <div class="panel__head"><span class="num">1</span><div><h2>GitHub connection</h2><p>Your website is published from a GitHub repository (Vercel/Netlify redeploys on every commit). The admin saves projects and pictures straight into that repository.</p></div></div>
+        <form id="ghForm" autocomplete="off">
+          <div class="grid3">
+            <label class="fld"><span>GitHub username / owner</span><input name="owner" required placeholder="Tani6315"></label>
+            <label class="fld"><span>Repository name</span><input name="repo" required placeholder="tjtech-website"></label>
+            <label class="fld"><span>Branch</span><input name="branch" required placeholder="main"></label>
+          </div>
+          <label class="fld"><span>Website folder inside the repo</span><input name="dir" placeholder="leave empty (index.html is at the top of the repo)"></label>
+          <p class="help">Your website files are at the top of the repository, so leave this <b>empty</b>.</p>
+          <label class="fld"><span>Personal access token</span>
+            <div class="pw"><input type="password" name="token" placeholder="github_pat_…" autocomplete="off"><button type="button" class="pw__toggle" data-toggle-pw>Show</button></div>
+          </label>
+          <p class="help">Create a <b>fine-grained token</b> on GitHub → Settings → Developer settings → Personal access tokens. Give it access to <b>only this repository</b> with <b>Contents: Read and write</b>. The token is stored only in this browser.</p>
+          <label class="tog"><input type="checkbox" name="remember" checked><span></span>Remember token on this device</label>
+          <div class="row-actions"><button class="btn btn--primary btn--sm" type="submit">Save &amp; test connection</button><button class="btn btn--ghost btn--sm" type="button" id="forgetToken">Forget token</button></div>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><span class="num">2</span><div><h2>Admin password</h2><p>Change the password used to open this dashboard.</p></div></div>
+        <form id="pwForm" class="grid2">
+          <label class="fld"><span>New password</span><input type="password" name="pw1" minlength="8" required autocomplete="new-password"></label>
+          <label class="fld"><span>Confirm new password</span><input type="password" name="pw2" minlength="8" required autocomplete="new-password"></label>
+          <div><button class="btn btn--primary btn--sm" type="submit">Update password</button></div>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><span class="num">3</span><div><h2>Backup</h2><p>Download all project data as a JSON file, or restore from a backup.</p></div></div>
+        <div class="row-actions"><button class="btn btn--ghost btn--sm" id="exportBtn">Download backup</button><label class="btn btn--ghost btn--sm">Restore from backup<input type="file" id="importInput" accept="application/json,.json" hidden></label></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal" hidden><div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><h3 id="modalTitle"></h3><p id="modalText"></p><div class="modal__actions"><button class="btn btn--ghost btn--sm" data-modal="no">Cancel</button><button class="btn btn--danger btn--sm" data-modal="yes">Delete</button></div></div></div>
+<!-- Publishing overlay -->
+<div class="busy" id="busy" hidden><div class="busy__card"><div class="spinner"></div><strong id="busyTitle">Publishing…</strong><span id="busyStep"></span></div></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
