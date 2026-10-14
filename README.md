@@ -93,6 +93,6 @@ With the Node.js server running, the admin saves directly to local files (no Git
 **Tanveer Jahangir** — Founder, TJ Tech
 📧 [tjtech063@gmail.com](mailto:tjtech063@gmail.com) · 📱 [+92 300 0585929](https://wa.me/923000585929) · 🐙 [github.com/Tani6315](https://github.com/Tani6315)
 
----
+----------------------------------------------------
 
 © TJ Tech. All rights reserved. Tech logos by [Devicon](https://devicon.dev) (MIT).
