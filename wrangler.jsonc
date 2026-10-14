@@ -1,0 +1,8 @@
+{
+  // Cloudflare Workers config: serve this folder as a static website
+  "name": "tjtech-website",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./"
+  }
+}
