@@ -68,8 +68,8 @@
     else if (p.status === "development") foot += `<span class="note">${svg("phone")} In development</span>`;
     const cats = [p.type === "app" ? "apps" : p.type === "software" ? "software" : "websites", p.source === "demo" ? "demo" : "real"].join(" ");
     return `<article class="project${wide ? " project--feature" : ""}" data-cat="${cats}" data-reveal style="--d:${((i % 2) * 0.08).toFixed(2)}s">
-  <a class="project__media" href="${detailUrl(p)}" aria-label="${esc(p.title)} — view project">
-    <img src="${esc(cover(p))}" alt="${esc(p.title)} — ${esc(p.kind)} preview" loading="lazy" onerror="this.style.opacity=0">
+  <a class="project__media" href="${detailUrl(p)}" aria-label="${esc(p.title)}: view project">
+    <img src="${esc(cover(p))}" alt="${esc(p.title)}, ${esc(p.kind)} preview" loading="lazy" onerror="this.style.opacity=0">
     <div class="project__badges"><span class="badge badge--${btype}">${btext}</span><span class="badge">${sourceLabel(p)}</span>${shots > 1 ? `<span class="badge">${svg("image")} ${shots} screens</span>` : ""}</div>
   </a>
   <div class="project__body">
@@ -109,7 +109,7 @@
     detail.innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">404</span><h1>Project not found</h1><p class="lead">This project may have been moved or removed.</p><div class="mt-40"><a href="portfolio.html" class="btn btn--primary">Back to Portfolio ${svg("arrow")}</a></div></div></section>`;
     return;
   }
-  document.title = `${p.title} — ${p.kind || "Project"} | TJ Tech`;
+  document.title = `${p.title}: ${p.kind || "Project"} | TJ Tech`;
   const md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute("content", p.summary || "");
 
   const [btype, btext] = badge(p);
@@ -131,7 +131,7 @@
   const gallery = imgs.length > 1 ? `
 <section class="section section--tight">
   <div class="container">
-    <div class="section-head"><span class="eyebrow" data-reveal>Screens</span><h2 class="h2" data-reveal>Inside the <span class="grad-text">${esc(p.title)}</span></h2>${p.confidential ? `<p class="lead" data-reveal>${svg("lock")} Real customer data is private — these screenshots use demo data only.</p>` : ""}</div>
+    <div class="section-head"><span class="eyebrow" data-reveal>Screens</span><h2 class="h2" data-reveal>Inside the <span class="grad-text">${esc(p.title)}</span></h2>${p.confidential ? `<p class="lead" data-reveal>${svg("lock")} Real customer data is private, these screenshots use demo data only.</p>` : ""}</div>
     <div class="gallery">${imgs.map((im, i) => `<figure class="shot" data-reveal style="--d:${((i % 3) * 0.06).toFixed(2)}s"><button type="button" data-lb="${i}" aria-label="Open screenshot: ${esc(im.caption || p.title)}"><img src="${esc(assetUrl(im.src))}" alt="${esc(im.caption || p.title)}" loading="lazy"><span class="shot__zoom">${svg("expand")}</span></button>${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ""}</figure>`).join("")}</div>
   </div>
 </section>` : "";
@@ -199,7 +199,7 @@ ${story}${gallery}${featureHtml}${techHtml}${navHtml}`;
   document.body.appendChild(lb);
   const lbImg = lb.querySelector("img"), lbCap = lb.querySelector("figcaption");
   let cur = 0, lastFocus = null;
-  const show = (i) => { cur = (i + imgs.length) % imgs.length; lbImg.src = assetUrl(imgs[cur].src); lbImg.alt = imgs[cur].caption || p.title; lbCap.textContent = `${cur + 1} / ${imgs.length}${imgs[cur].caption ? " — " + imgs[cur].caption : ""}`; };
+  const show = (i) => { cur = (i + imgs.length) % imgs.length; lbImg.src = assetUrl(imgs[cur].src); lbImg.alt = imgs[cur].caption || p.title; lbCap.textContent = `${cur + 1} / ${imgs.length}${imgs[cur].caption ? ": " + imgs[cur].caption : ""}`; };
   const open = (i) => { lastFocus = document.activeElement; show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; lb.querySelector(".lb-close").focus(); };
   const close = () => { lb.classList.remove("open"); document.body.style.overflow = ""; lastFocus && lastFocus.focus(); };
   detail.addEventListener("click", (e) => { const b = e.target.closest("[data-lb]"); if (b) open(+b.dataset.lb); });

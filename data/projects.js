@@ -40,7 +40,7 @@ window.TJ_PROJECTS = [
     "images": [
       {
         "src": "assets/projects/jahangir-motors/home.webp",
-        "caption": "Home page — trusted motorcycle dealer in Vehari"
+        "caption": "Home page: trusted motorcycle dealer in Vehari"
       }
     ],
     "features": [
@@ -141,8 +141,8 @@ window.TJ_PROJECTS = [
     "confidential": true,
     "url": "",
     "repo": "",
-    "summary": "A private point-of-sale and installment khata system built for Jahangir Motors. It handles bike sales, flexible installment schedules, payments, daily follow-ups, inventory, registrations and profit reports — live-synced across every device and installable on phones as an app.",
-    "client": "Jahangir Motors sells motorcycles on monthly installments. Every customer has a khata (ledger) that has to stay accurate for years — across the shop counter, the owner's phone and staff devices.",
+    "summary": "A private point-of-sale and installment khata system built for Jahangir Motors. It handles bike sales, flexible installment schedules, payments, daily follow-ups, inventory, registrations and profit reports, live-synced across every device and installable on phones as an app.",
+    "client": "Jahangir Motors sells motorcycles on monthly installments. Every customer has a khata (ledger) that has to stay accurate for years, across the shop counter, the owner's phone and staff devices.",
     "goals": [
       "Replace paper khata registers with one reliable system for sales, installments and follow-ups.",
       "Make it impossible to lose or double-count a payment, and show exactly which installment each payment covers.",
@@ -166,11 +166,11 @@ window.TJ_PROJECTS = [
     "images": [
       {
         "src": "assets/projects/khata-system/01-cover.webp",
-        "caption": "Customer khata — dues summary and invoices"
+        "caption": "Customer khata: dues summary and invoices"
       },
       {
         "src": "assets/projects/khata-system/02-dashboard.webp",
-        "caption": "Dashboard — customers, sales, collections and stock at a glance"
+        "caption": "Dashboard: customers, sales, collections and stock at a glance"
       },
       {
         "src": "assets/projects/khata-system/03-dues-summary-installment-schedule.webp",
@@ -182,15 +182,15 @@ window.TJ_PROJECTS = [
       },
       {
         "src": "assets/projects/khata-system/05-payment-allocation-preview.webp",
-        "caption": "Receive payment — allocation preview before saving"
+        "caption": "Receive payment: allocation preview before saving"
       },
       {
         "src": "assets/projects/khata-system/06-khata-ledger.webp",
-        "caption": "Khata ledger — every payment shows which installment it covered"
+        "caption": "Khata ledger: every payment shows which installment it covered"
       },
       {
         "src": "assets/projects/khata-system/07-todays-due-follow-up.webp",
-        "caption": "Today's Due — call, WhatsApp and SMS follow-ups"
+        "caption": "Today's Due: call, WhatsApp and SMS follow-ups"
       },
       {
         "src": "assets/projects/khata-system/08-yearly-report.webp",
@@ -202,11 +202,11 @@ window.TJ_PROJECTS = [
       },
       {
         "src": "assets/projects/khata-system/10-mobile-khata.webp",
-        "caption": "Mobile — customer khata"
+        "caption": "Mobile: customer khata"
       },
       {
         "src": "assets/projects/khata-system/11-mobile-dues-summary.webp",
-        "caption": "Mobile — dues summary"
+        "caption": "Mobile: dues summary"
       }
     ],
     "features": [
@@ -273,7 +273,7 @@ window.TJ_PROJECTS = [
     "confidential": false,
     "url": "https://ember-spice-nu.vercel.app/",
     "repo": "",
-    "summary": "A warm, appetising restaurant website with a tabbed menu, photo gallery, guest reviews and a smart table-booking form that respects time zones and opening hours — built with Next.js.",
+    "summary": "A warm, appetising restaurant website with a tabbed menu, photo gallery, guest reviews and a smart table-booking form that respects time zones and opening hours, built with Next.js.",
     "client": "",
     "goals": [],
     "result": "",
@@ -295,7 +295,7 @@ window.TJ_PROJECTS = [
     "images": [
       {
         "src": "assets/projects/ember-spice/cover.webp",
-        "caption": "Ember & Spice — desktop and mobile"
+        "caption": "Ember & Spice: desktop and mobile"
       }
     ],
     "features": [
@@ -316,7 +316,7 @@ window.TJ_PROJECTS = [
           "Time slots shown in the visitor's own time zone.",
           "Names accept letters only and phone numbers digits only.",
           "Bookings arrive by email, with a success notification on screen.",
-          "Delivery by WhatsApp or email — switchable from a setting."
+          "Delivery by WhatsApp or email, switchable from a setting."
         ]
       },
       {
@@ -340,7 +340,7 @@ window.TJ_PROJECTS = [
     "confidential": false,
     "url": "https://northgate-realty.vercel.app/",
     "repo": "",
-    "summary": "A modern real estate website with shareable property search, 12 auto-generated property pages, a live mortgage calculator and lead forms that tell the agent exactly which home a buyer is asking about — built with Next.js.",
+    "summary": "A modern real estate website with shareable property search, 12 auto-generated property pages, a live mortgage calculator and lead forms that tell the agent exactly which home a buyer is asking about, built with Next.js.",
     "client": "",
     "goals": [],
     "result": "",
@@ -362,7 +362,7 @@ window.TJ_PROJECTS = [
     "images": [
       {
         "src": "assets/projects/northgate-realty/cover.webp",
-        "caption": "Northgate Realty — desktop and mobile"
+        "caption": "Northgate Realty: desktop and mobile"
       }
     ],
     "features": [
@@ -412,7 +412,7 @@ window.TJ_PROJECTS = [
     "confidential": false,
     "url": "",
     "repo": "",
-    "summary": "A marketplace app like Daraz where multiple shopkeepers and sellers create accounts, upload product photos and sell — with seller dashboards, product listings and orders.",
+    "summary": "A marketplace app like Daraz where multiple shopkeepers and sellers create accounts, upload product photos and sell, with seller dashboards, product listings and orders.",
     "client": "",
     "goals": [],
     "result": "",
@@ -429,7 +429,7 @@ window.TJ_PROJECTS = [
     "images": [
       {
         "src": "assets/projects/hum-mart/cover.webp",
-        "caption": "Hum Mart — app concept"
+        "caption": "Hum Mart: app concept"
       }
     ],
     "features": []

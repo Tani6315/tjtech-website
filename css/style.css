@@ -803,7 +803,6 @@ a.project__media{display:block}
 .mobile-menu{background:#040914;backdrop-filter:none;-webkit-backdrop-filter:none;clip-path:none;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
 .menu-open .mobile-menu{clip-path:none;opacity:1;visibility:visible;transform:none;transition:opacity .3s ease,transform .3s ease,visibility 0s}
 .mobile-menu a,.menu-open .mobile-menu a{transform:none;transition:color .3s}
-body.menu-open .hero__canvas,body.menu-open .orb{visibility:hidden}
 /* Phones/tablets: lighter effects so the GPU doesn't flicker */
 @media (max-width:1100px),(hover:none){
   .orb{animation:none;filter:blur(60px)}

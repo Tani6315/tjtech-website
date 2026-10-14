@@ -320,10 +320,10 @@ const FORM_ENDPOINT = "https://api.web3forms.com/submit";
       });
       if (!ok) { status.textContent = "Please fill in the highlighted fields."; status.classList.add("err"); return; }
       if ($("[name=botcheck]", form).checked) return;
-      if (keyMissing()) { status.textContent = "The form is not connected yet — add your Web3Forms access key in js/main.js. Meanwhile, email tjtech063@gmail.com."; status.classList.add("err"); return; }
+      if (keyMissing()) { status.textContent = "The form is not connected yet, add your Web3Forms access key in js/main.js. Meanwhile, email tjtech063@gmail.com."; status.classList.add("err"); return; }
       const data = Object.fromEntries(new FormData(form).entries());
       delete data.botcheck;
-      data.subject = `New project enquiry from ${data.name} — TJ Tech website`;
+      data.subject = `New project enquiry from ${data.name}, TJ Tech website`;
       data.from_name = "TJ Tech Website";
       btn.classList.add("loading");
       btn.innerHTML = 'Sending <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg>';
@@ -347,7 +347,7 @@ const FORM_ENDPOINT = "https://api.web3forms.com/submit";
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) { input.focus(); input.placeholder = "Enter a valid email"; input.value = ""; return; }
       if (keyMissing()) { input.value = ""; input.placeholder = "Form not connected yet"; return; }
       btn.textContent = "…";
-      try { await send({ email: input.value, subject: "New newsletter subscriber — TJ Tech", from_name: "TJ Tech Website" }); input.value = ""; input.placeholder = "Subscribed — thank you!"; }
+      try { await send({ email: input.value, subject: "New newsletter subscriber, TJ Tech", from_name: "TJ Tech Website" }); input.value = ""; input.placeholder = "Subscribed, thank you!"; }
       catch { input.placeholder = "Try again later"; }
       finally { btn.textContent = "Subscribe"; }
     });
