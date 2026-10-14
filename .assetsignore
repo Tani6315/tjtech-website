@@ -2,5 +2,11 @@ README.md
 docs
 server.js
 package.json
+package-lock.json
+bun.lock
+bun.lockb
+node_modules
+wrangler.jsonc
+.wrangler
 .git
 .assetsignore
