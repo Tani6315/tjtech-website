@@ -10,7 +10,7 @@
   if (location.protocol.startsWith("http") && !/\/$|\.html$/.test(location.pathname)) location.replace(location.pathname + "/" + location.search + location.hash);
 </script>
 <link rel="icon" href="../assets/img/favicon.png" type="image/png">
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="admin.css?v=3">
 </head>
 <body>
 
@@ -176,7 +176,7 @@
 <div class="busy" id="busy" hidden><div class="busy__card"><div class="spinner"></div><strong id="busyTitle">Publishing…</strong><span id="busyStep"></span></div></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
-<script src="config.js"></script>
-<script src="admin.js"></script>
+<script src="config.js?v=3"></script>
+<script src="admin.js?v=3"></script>
 </body>
 </html>

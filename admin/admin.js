@@ -115,7 +115,15 @@
       const j = await (await GH.api("")).json();
       if (j.permissions && !j.permissions.push) throw new Error("This token can read but not write to the repository.");
       await GH.api(`/git/ref/heads/${GH.path(S.gh.branch)}`);
-      try { await GH.raw(CFG.dataPath); } catch { throw new Error(`Could not find ${GH.full(CFG.dataPath)} in the repository — check the “Website folder” field (use tjtech if your files are inside a tjtech folder, or leave it empty if index.html is at the top).`); }
+      // find the website folder automatically: try the typed folder first, then the repo root, then "tjtech"
+      const typed = String(S.gh.dir || "");
+      let found = false;
+      for (const d of [...new Set([typed, "", "tjtech"])]) {
+        S.gh.dir = d;
+        try { await GH.raw(CFG.dataPath); found = true; break; } catch {}
+      }
+      if (!found) { S.gh.dir = typed; throw new Error(`Could not find ${CFG.dataPath} in the repository. Check the owner, repository name, branch and token access.`); }
+      const fld = document.querySelector("#ghForm [name=dir]"); if (fld) fld.value = S.gh.dir;
       return j;
     },
     async raw(path) { return GH.api(`/contents/${GH.path(GH.full(path))}?ref=${encodeURIComponent(S.gh.branch)}`, { headers: { Accept: "application/vnd.github.raw+json" } }); },
